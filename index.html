@@ -9,7 +9,6 @@
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
             margin: 20px;
-			margin-bottom: 3px;
         }
         .table {
             width: 100%;
@@ -20,30 +19,41 @@
             border: 1px solid #ddd;
             padding: 10px;
             text-align: left;
-			margin-bottom: 3px;
         }
         .table th {
             background-color: #f4f4f4;
         }
         .copy-button {
+            display: block;
+            width: fit-content;
             padding: 6px 10px;
             background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 1px;
             cursor: pointer;
-			margin-bottom: 3px;
+            transition: background-color 0.1s ease;
+            margin-top: 1px; /* Dodatkowa przerwa 1px */
+        }
+        .copy-button:first-child {
+            margin-top: 0; /* Usuwa margines z pierwszego przycisku w każdej komórce */
         }
         .copy-button:hover {
             background-color: #45a049;
         }
+        .copied {
+            background-color: #d9534f !important;
+        }
     </style>
     <script>
-        function copyText(text) {
+        function copyText(text, button) {
             navigator.clipboard.writeText(text).then(() => {
-                alert("Skopiowano: " + text);
+                button.classList.add("copied"); // Zmień kolor przycisku na czerwony
+                setTimeout(() => {
+                    button.classList.remove("copied"); // Przywróć oryginalny kolor po 3 sekundach
+                }, 1000);
             }).catch(err => {
-                alert("Błąd kopiowania: " + err);
+                console.error("Błąd kopiowania: ", err);
             });
         }
     </script>
@@ -58,7 +68,7 @@
                 <th>Akcja</th>
             </tr>
         </thead>
-        <tbody>
+    <tbody>
             <!-- Offensive Imbuements -->
             <tr>
                 <td>Critical Hit</td>
@@ -68,9 +78,9 @@
                      5× Vexclaw Talon
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Sabretooth')">Kopiuj Sabretooth</button><br>
-                    <button class="copy-button" onclick="copyText('Protective Charm')">Kopiuj Protective Charm</button><br>
-                    <button class="copy-button" onclick="copyText('Vexclaw Talon')">Kopiuj Vexclaw Talon</button>
+                    <button class="copy-button" onclick="copyText('Sabretooth', this)">Kopiuj Sabretooth</button><br>
+                    <button class="copy-button" onclick="copyText('Protective Charm', this)">Kopiuj Protective Charm</button><br>
+                    <button class="copy-button" onclick="copyText('Vexclaw Talon', this)">Kopiuj Vexclaw Talon</button>
                 </td>
             </tr>
             <tr>
@@ -81,9 +91,9 @@
                      5× Piece of Dead Brain
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Vampire Teeth')">Kopiuj Vampire Teeth</button><br>
-                    <button class="copy-button" onclick="copyText('Bloody Pincers')">Kopiuj Bloody Pincers</button><br>
-                    <button class="copy-button" onclick="copyText('Piece of Dead Brain')">Kopiuj Piece of Dead Brain</button>
+                    <button class="copy-button" onclick="copyText('Vampire Teeth', this)">Kopiuj Vampire Teeth</button><br>
+                    <button class="copy-button" onclick="copyText('Bloody Pincers', this)">Kopiuj Bloody Pincers</button><br>
+                    <button class="copy-button" onclick="copyText('Piece of Dead Brain', this)">Kopiuj Piece of Dead Brain</button>
                 </td>
             </tr>
             <tr>
@@ -94,9 +104,9 @@
                      5× Grimeleech Wing
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Rope Belt')">Kopiuj Rope Belt</button><br>
-                    <button class="copy-button" onclick="copyText('Silencer Claw')">Kopiuj Silencer Claw</button><br>
-                    <button class="copy-button" onclick="copyText('Grimeleech Wing')">Kopiuj Grimeleech Wing</button>
+                    <button class="copy-button" onclick="copyText('Rope Belt', this)">Kopiuj Rope Belt</button><br>
+                    <button class="copy-button" onclick="copyText('Silencer Claw', this)">Kopiuj Silencer Claw</button><br>
+                    <button class="copy-button" onclick="copyText('Grimeleech Wing', this)">Kopiuj Grimeleech Wing</button>
                 </td>
             </tr>
             <tr>
@@ -107,9 +117,9 @@
                     15× Strand of Medusa Hair
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Elvish Talisman')">Kopiuj Elvish Talisman</button><br>
-                    <button class="copy-button" onclick="copyText('Broken Shamanic Staff')">Kopiuj Broken Shamanic Staff</button><br>
-                    <button class="copy-button" onclick="copyText('GStrand of Medusa Hair')">Kopiuj Strand of Medusa Hair</button>
+                    <button class="copy-button" onclick="copyText('Elvish Talisman', this)">Kopiuj Elvish Talisman</button><br>
+                    <button class="copy-button" onclick="copyText('Broken Shamanic Staff', this)">Kopiuj Broken Shamanic Staff</button><br>
+                    <button class="copy-button" onclick="copyText('GStrand of Medusa Hair', this)">Kopiuj Strand of Medusa Hair</button>
                 </td>
             </tr>
             <tr>
@@ -120,9 +130,9 @@
                      5× Goosebump Leather
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Fairy Wings')">Kopiuj Fairy Wings</button><br>
-                    <button class="copy-button" onclick="copyText('Little Bowl of Myrrh')">Kopiuj Little Bowl of Myrrh</button><br>
-                    <button class="copy-button" onclick="copyText('Goosebump Leather')">Kopiuj Goosebump Leather</button>
+                    <button class="copy-button" onclick="copyText('Fairy Wings', this)">Kopiuj Fairy Wings</button><br>
+                    <button class="copy-button" onclick="copyText('Little Bowl of Myrrh', this)">Kopiuj Little Bowl of Myrrh</button><br>
+                    <button class="copy-button" onclick="copyText('Goosebump Leather', this)">Kopiuj Goosebump Leather</button>
                 </td>
             </tr>
             <tr>
@@ -133,9 +143,9 @@
                     15× Damselfly Wing
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Compass')">Kopiuj Compass</button><br>
-                    <button class="copy-button" onclick="copyText('Waspoid Wing')">Kopiuj Waspoid Wing</button><br>
-                    <button class="copy-button" onclick="copyText('Damselfly Wing')">Kopiuj Damselfly Wing</button>
+                    <button class="copy-button" onclick="copyText('Compass', this)">Kopiuj Compass</button><br>
+                    <button class="copy-button" onclick="copyText('Waspoid Wing', this)">Kopiuj Waspoid Wing</button><br>
+                    <button class="copy-button" onclick="copyText('Damselfly Wing', this)">Kopiuj Damselfly Wing</button>
                 </td>
             </tr>
 
@@ -148,9 +158,9 @@
                     10× Metal Spike
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Elven Scouting Glass')">Kopiuj Elven Scouting Glass</button><br>
-                    <button class="copy-button" onclick="copyText('Elven Hoof')">Kopiuj Elven Hoof</button><br>
-                    <button class="copy-button" onclick="copyText('Metal Spike')">Kopiuj Metal Spike</button>
+                    <button class="copy-button" onclick="copyText('Elven Scouting Glass', this)">Kopiuj Elven Scouting Glass</button><br>
+                    <button class="copy-button" onclick="copyText('Elven Hoof', this)">Kopiuj Elven Hoof</button><br>
+                    <button class="copy-button" onclick="copyText('Metal Spike', this)">Kopiuj Metal Spike</button>
                 </td>
             </tr>
             <tr>
@@ -161,9 +171,9 @@
                     10× Warmaster's Wristguards
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Elven Astral Observer')">Kopiuj Elven Astral Observer</button><br>
-                    <button class="copy-button" onclick="copyText('Ogre Nose Ring')">Kopiuj Ogre Nose Ring</button><br>
-                    <button class="copy-button" onclick="copyText('Warmaster\'s Wristguards')">Kopiuj Warmaster\'s Wristguards</button>
+                    <button class="copy-button" onclick="copyText('Elven Astral Observer', this)">Kopiuj Elven Astral Observer</button><br>
+                    <button class="copy-button" onclick="copyText('Ogre Nose Ring', this)">Kopiuj Ogre Nose Ring</button><br>
+                    <button class="copy-button" onclick="copyText('Warmaster\'s Wristguards', this)">Kopiuj Warmaster\'s Wristguards</button>
                 </td>
             </tr>
             <tr>
@@ -174,9 +184,9 @@
                     20× Moohtant Horn
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Battle Stone')">Kopiuj Battle Stone</button><br>
-                    <button class="copy-button" onclick="copyText('Orc Tooth')">Kopiuj Orc Tooth</button><br>
-                    <button class="copy-button" onclick="copyText('Moohtant Horn')">Kopiuj Moohtant Horn</button>
+                    <button class="copy-button" onclick="copyText('Battle Stone', this)">Kopiuj Battle Stone</button><br>
+                    <button class="copy-button" onclick="copyText('Orc Tooth', this)">Kopiuj Orc Tooth</button><br>
+                    <button class="copy-button" onclick="copyText('Moohtant Horn', this)">Kopiuj Moohtant Horn</button>
                 </td>
             </tr>
             <tr>
@@ -187,9 +197,9 @@
                      5× War Crystal
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Lion\'s Mane')">Kopiuj Lion\'s Mane</button><br>
-                    <button class="copy-button" onclick="copyText('Mooh'tah Shell')">Kopiuj Mooh'tah Shell</button><br>
-                    <button class="copy-button" onclick="copyText('War Crystal')">Kopiuj War Crystal</button>
+                    <button class="copy-button" onclick="copyText('Lion\'s Mane', this)">Kopiuj Lion\'s Mane</button><br>
+                    <button class="copy-button" onclick="copyText('Mooh'tah Shell', this)">Kopiuj Mooh'tah Shell</button><br>
+                    <button class="copy-button" onclick="copyText('War Crystal', this)">Kopiuj War Crystal</button>
                 </td>
             </tr>
             <tr>
@@ -200,9 +210,9 @@
                     20× Piece of Scarab Shell
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Frazzle Skin')">Kopiuj Frazzle Skin</button><br>
-                    <button class="copy-button" onclick="copyText('Brimstone Shell')">Kopiuj Brimstone Shell</button><br>
-                    <button class="copy-button" onclick="copyText('Piece of Scarab Shell')">Kopiuj Piece of Scarab Shell</button>
+                    <button class="copy-button" onclick="copyText('Frazzle Skin', this)">Kopiuj Frazzle Skin</button><br>
+                    <button class="copy-button" onclick="copyText('Brimstone Shell', this)">Kopiuj Brimstone Shell</button><br>
+                    <button class="copy-button" onclick="copyText('Piece of Scarab Shell', this)">Kopiuj Piece of Scarab Shell</button>
                 </td>
             </tr>
 
@@ -215,9 +225,9 @@
                     5× Mystical Hourglass
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Flask of Embalming Fluid')">Kopiuj Flask of Embalming Fluid</button><br>
-        	    <button class="copy-button" onclick="copyText('Gloom Wolf Fur')">Kopiuj Gloom Wolf Fur</button><br>
-                    <button class="copy-button" onclick="copyText('Mystical Hourglass')">Kopiuj Mystical Hourglass</button>
+                    <button class="copy-button" onclick="copyText('Flask of Embalming Fluid', this)">Kopiuj Flask of Embalming Fluid</button><br>
+        	    <button class="copy-button" onclick="copyText('Gloom Wolf Fur', this)">Kopiuj Gloom Wolf Fur</button><br>
+                    <button class="copy-button" onclick="copyText('Mystical Hourglass', this)">Kopiuj Mystical Hourglass</button>
                 </td>
             </tr>
             <tr>
@@ -228,9 +238,9 @@
                     10× Brimstone Fangs
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Piece of Swampling Wood')">Kopiuj Piece of Swampling Wood</button><br>
-                    <button class="copy-button" onclick="copyText('Snake Skin')">Kopiuj Snake Skin</button><br>
-                    <button class="copy-button" onclick="copyText('Brimstone Fangs')">Kopiuj Brimstone Fangs</button>
+                    <button class="copy-button" onclick="copyText('Piece of Swampling Wood', this)">Kopiuj Piece of Swampling Wood</button><br>
+                    <button class="copy-button" onclick="copyText('Snake Skin', this)">Kopiuj Snake Skin</button><br>
+                    <button class="copy-button" onclick="copyText('Brimstone Fangs', this)">Kopiuj Brimstone Fangs</button>
                 </td>
             </tr>
             <tr>
@@ -241,9 +251,9 @@
                     5× Draken Sulphur
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Green Dragon Leather')">Kopiuj Green Dragon Leather</button><br>
-                    <button class="copy-button" onclick="copyText('Blazing Bone')">Kopiuj Blazing Bone</button><br>
-                    <button class="copy-button" onclick="copyText('Draken Sulphur')">Kopiuj Draken Sulphur</button>
+                    <button class="copy-button" onclick="copyText('Green Dragon Leather', this)">Kopiuj Green Dragon Leather</button><br>
+                    <button class="copy-button" onclick="copyText('Blazing Bone', this)">Kopiuj Blazing Bone</button><br>
+                    <button class="copy-button" onclick="copyText('Draken Sulphur', this)">Kopiuj Draken Sulphur</button>
                 </td>
             </tr>
             <tr>
@@ -254,9 +264,9 @@
                     10× Deepling Warts
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Winter Wolf Fur')">Kopiuj Winter Wolf Fur</button><br>
-                    <button class="copy-button" onclick="copyText('Thick Fur')">Kopiuj Thick Fur</button><br>
-                    <button class="copy-button" onclick="copyText('Deepling Warts')">Kopiuj Deepling Warts</button>
+                    <button class="copy-button" onclick="copyText('Winter Wolf Fur', this)">Kopiuj Winter Wolf Fur</button><br>
+                    <button class="copy-button" onclick="copyText('Thick Fur', this)">Kopiuj Thick Fur</button><br>
+                    <button class="copy-button" onclick="copyText('Deepling Warts', this)">Kopiuj Deepling Warts</button>
                 </td>
             </tr>
             <tr>
@@ -267,9 +277,9 @@
                     10× Wyrm Scale
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Wyvern Talisman')">Kopiuj Wyvern Talisman</button><br>
-                    <button class="copy-button" onclick="copyText('Crawler Head Plating,')">Kopiuj Crawler Head Plating,</button><br>
-                    <button class="copy-button" onclick="copyText('Wyrm Scale')">Kopiuj Wyrm Scale</button>
+                    <button class="copy-button" onclick="copyText('Wyvern Talisman', this)">Kopiuj Wyvern Talisman</button><br>
+                    <button class="copy-button" onclick="copyText('Crawler Head Plating,', this)">Kopiuj Crawler Head Plating,</button><br>
+                    <button class="copy-button" onclick="copyText('Wyrm Scale', this)">Kopiuj Wyrm Scale</button>
                 </td>
             </tr>
             <tr>
@@ -280,9 +290,9 @@
                     20× Hellspawn Tail
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Cultish Robe')">Kopiuj Cultish Robe</button><br>
-                    <button class="copy-button" onclick="copyText('Cultish Mask')">Kopiuj Cultish Mask</button><br>
-                    <button class="copy-button" onclick="copyText('Hellspawn Tail')">Kopiuj Hellspawn Tail</button>
+                    <button class="copy-button" onclick="copyText('Cultish Robe', this)">Kopiuj Cultish Robe</button><br>
+                    <button class="copy-button" onclick="copyText('Cultish Mask', this)">Kopiuj Cultish Mask</button><br>
+                    <button class="copy-button" onclick="copyText('Hellspawn Tail', this)">Kopiuj Hellspawn Tail</button>
                 </td>
             </tr>
             <tr>
@@ -293,9 +303,9 @@
                     5× Quill
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Wereboar Hooves')">Kopiuj Wereboar Hooves</button><br>
-                    <button class="copy-button" onclick="copyText('Crystallized Anger')">Kopiuj Crystallized Anger</button><br>
-                    <button class="copy-button" onclick="copyText('Quill')">Kopiuj Quill</button>
+                    <button class="copy-button" onclick="copyText('Wereboar Hooves', this)">Kopiuj Wereboar Hooves</button><br>
+                    <button class="copy-button" onclick="copyText('Crystallized Anger', this)">Kopiuj Crystallized Anger</button><br>
+                    <button class="copy-button" onclick="copyText('Quill', this)">Kopiuj Quill</button>
                 </td>
             </tr>
 
@@ -308,9 +318,9 @@
                     5× Petrified Scream
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Pile of Grave Earth')">Kopiuj Pile of Grave Earth</button><br>
-                    <button class="copy-button" onclick="copyText('Demonic Skeletal Hand')">Kopiuj Demonic Skeletal Hand</button><br>
-                    <button class="copy-button" onclick="copyText('Petrified Scream')">Kopiuj Petrified Scream</button>
+                    <button class="copy-button" onclick="copyText('Pile of Grave Earth', this)">Kopiuj Pile of Grave Earth</button><br>
+                    <button class="copy-button" onclick="copyText('Demonic Skeletal Hand', this)">Kopiuj Demonic Skeletal Hand</button><br>
+                    <button class="copy-button" onclick="copyText('Petrified Scream', this)">Kopiuj Petrified Scream</button>
                 </td>
             </tr>
             <tr>
@@ -321,9 +331,9 @@
                     2× Slime Heart
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Swamp Grass')">Kopiuj Swamp Grass</button><br>
-                    <button class="copy-button" onclick="copyText('Poisonous Slime')">Kopiuj Poisonous Slime</button><br>
-                    <button class="copy-button" onclick="copyText('Slime Heart')">Kopiuj Slime Heart</button>
+                    <button class="copy-button" onclick="copyText('Swamp Grass', this)">Kopiuj Swamp Grass</button><br>
+                    <button class="copy-button" onclick="copyText('Poisonous Slime', this)">Kopiuj Poisonous Slime</button><br>
+                    <button class="copy-button" onclick="copyText('Slime Heart', this)">Kopiuj Slime Heart</button>
                 </td>
             </tr>
             <tr>
@@ -334,9 +344,9 @@
                     5× Demon Horn
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Fiery Heart')">Kopiuj Fiery Heart</button><br>
-                    <button class="copy-button" onclick="copyText('Green Dragon Scale')">Kopiuj Green Dragon Scale</button><br>
-                    <button class="copy-button" onclick="copyText('Demon Horn')">Kopiuj Demon Horn</button>
+                    <button class="copy-button" onclick="copyText('Fiery Heart', this)">Kopiuj Fiery Heart</button><br>
+                    <button class="copy-button" onclick="copyText('Green Dragon Scale', this)">Kopiuj Green Dragon Scale</button><br>
+                    <button class="copy-button" onclick="copyText('Demon Horn', this)">Kopiuj Demon Horn</button>
                 </td>
             </tr>
             <tr>
@@ -347,9 +357,9 @@
                     5× Polar Bear Paw
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Frosty Heart')">Kopiuj Frosty Heart</button><br>
-                    <button class="copy-button" onclick="copyText('Seacrest Hair')">Kopiuj Seacrest Hair</button><br>
-                    <button class="copy-button" onclick="copyText('Polar Bear Paw')">Kopiuj Polar Bear Paw</button>
+                    <button class="copy-button" onclick="copyText('Frosty Heart', this)">Kopiuj Frosty Heart</button><br>
+                    <button class="copy-button" onclick="copyText('Seacrest Hair', this)">Kopiuj Seacrest Hair</button><br>
+                    <button class="copy-button" onclick="copyText('Polar Bear Paw', this)">Kopiuj Polar Bear Paw</button>
                 </td>
             </tr>
             <tr>
@@ -360,13 +370,12 @@
                     1× Energy Vein
                 </td>
                 <td>
-                    <button class="copy-button" onclick="copyText('Rorc Feather')">Kopiuj Rorc Feather</button><br>
-                    <button class="copy-button" onclick="copyText('Peacock Feather Fan')">Kopiuj Peacock Feather Fan</button><br>
-                    <button class="copy-button" onclick="copyText('Energy Vein')">Kopiuj Energy Vein</button>
+                    <button class="copy-button" onclick="copyText('Rorc Feather', this)">Kopiuj Rorc Feather</button><br>
+                    <button class="copy-button" onclick="copyText('Peacock Feather Fan', this)">Kopiuj Peacock Feather Fan</button><br>
+                    <button class="copy-button" onclick="copyText('Energy Vein', this)">Kopiuj Energy Vein</button>
                 </td>
             </tr>
         </tbody>
     </table>
 </body>
 </html>
-
